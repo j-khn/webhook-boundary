@@ -37,6 +37,8 @@ The example header format is t=<unix-seconds>,v1=<hex-hmac>. A signing helper is
 python -m pip install .
 ~~~
 
+The package includes a `py.typed` marker so type checkers can use its public annotations.
+
 ## Security boundary
 
 Provider SDKs such as [Svix](https://github.com/svix/svix-webhooks) and [Tern](https://github.com/Hookflo/tern) already cover common production formats. This small package is a provider-neutral reference for the documented t/v1 format and verifies authenticity and freshness. It does not deduplicate provider event IDs or make webhook handling exactly-once. Persist the provider event ID under a unique constraint before applying side effects. Each provider defines its own signing format; adapt the header parser rather than assuming this example format is universal.
